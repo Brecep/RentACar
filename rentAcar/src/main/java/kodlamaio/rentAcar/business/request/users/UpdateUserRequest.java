@@ -20,7 +20,7 @@ public class UpdateUserRequest {
 	@Size(min = 2)
 	private String lastName;
 	@NotNull
-	@Size(min = 11,max = 11)
+	@Size(min = 11, max = 11)
 	private String tcNo;
 	private String email;
 	private String password;
