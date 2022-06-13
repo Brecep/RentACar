@@ -10,8 +10,6 @@ import kodlamaio.rentAcar.core.utilities.result.DataResult;
 import kodlamaio.rentAcar.core.utilities.result.Result;
 import kodlamaio.rentAcar.entities.conretes.Brand;
 
-//import com.kodlamaio.rentAcar.bussines.request.brands.GetBrandRequest;
-
 public interface BrandService {
 	Result add(CreateBrandRequest createBrandRequest);
 

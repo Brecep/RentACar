@@ -23,7 +23,7 @@ import kodlamaio.rentAcar.entities.conretes.Brand;
 //brandServiceImpl
 @Service
 public class BrandManager implements BrandService {
-	@Autowired // parametreye bakıp bu interface nin somutunu getir
+	@Autowired
 	private BrandRepository brandRepository;
 	private ModelMapperService modelMapperService;
 
