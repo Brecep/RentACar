@@ -1,4 +1,4 @@
-package kodlamaio.rentAcar.business.response.additionalservices;
+package kodlamaio.rentAcar.business.request.additionalItems;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetAllAdditionalServiceResponse {
+public class DeleteAdditionalItemRequest {
 	private int id;
 }

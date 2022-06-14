@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -23,9 +25,11 @@ public class Additional {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "name")
-	private String name;
+	@ManyToOne
+	@JoinColumn(name = "additionalItem_id")
+	private AdditionalItem additionalItem;
 
-	@Column(name = "dailyprice")
-	private double dailyprice;
+	@ManyToOne
+	@JoinColumn(name = "rental_id")//hizmet alanlar
+	private Rental rental;
 }

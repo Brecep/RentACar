@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UpdateAdditionalServiceRequest {
 	private int id;
-	private String name;
-	private double dailyPrice;
+	// private int day;
+	private int additionalItemId;
+	private double totalPrice;;
 }

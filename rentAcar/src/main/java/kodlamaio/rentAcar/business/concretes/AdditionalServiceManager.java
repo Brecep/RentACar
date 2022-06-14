@@ -66,8 +66,10 @@ public class AdditionalServiceManager implements AdditionalService {
 
 	@Override
 	public DataResult<GetAdditionalServiceResponse> getById(int id) {
-		// Additional additional = this.additionalServiceRepository.findById(id);
-		return null;
+		Additional additional = this.additionalServiceRepository.getById(id);
+		GetAdditionalServiceResponse response = this.modelMapperService.forResponse().map(additional,
+				GetAdditionalServiceResponse.class);
+		return new SuccessDataResult<GetAdditionalServiceResponse>(response);
 	}
 
 }
