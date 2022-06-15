@@ -3,6 +3,7 @@ package kodlamaio.rentAcar.business.concretes;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.rentAcar.business.abstracts.AdditionalService;
@@ -22,15 +23,17 @@ import kodlamaio.rentAcar.entities.conretes.Additional;
 @Service
 public class AdditionalServiceManager implements AdditionalService {
 
+	@Autowired
 	private ModelMapperService modelMapperService;
+	@Autowired
 	private AdditionalServiceRepository additionalServiceRepository;
 
-	public AdditionalServiceManager(ModelMapperService modelMapperService,
-			AdditionalServiceRepository additionalServiceRepository) {
-		super();
-		this.modelMapperService = modelMapperService;
-		this.additionalServiceRepository = additionalServiceRepository;
-	}
+	/*
+	 * public AdditionalServiceManager(ModelMapperService modelMapperService,
+	 * AdditionalServiceRepository additionalServiceRepository) { super();
+	 * this.modelMapperService = modelMapperService;
+	 * this.additionalServiceRepository = additionalServiceRepository; }
+	 */
 
 	@Override
 	public Result add(CreateAdditionalServiceRequest createAdditionalServiceRequests) {

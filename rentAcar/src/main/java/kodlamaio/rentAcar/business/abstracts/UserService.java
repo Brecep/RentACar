@@ -10,7 +10,6 @@ import kodlamaio.rentAcar.business.response.users.GetAllUsersResponse;
 import kodlamaio.rentAcar.business.response.users.GetUserResponse;
 import kodlamaio.rentAcar.core.utilities.result.DataResult;
 import kodlamaio.rentAcar.core.utilities.result.Result;
-import kodlamaio.rentAcar.entities.conretes.User;
 
 public interface UserService {
 	Result add(CreateUserRequest createUserRequest) throws NumberFormatException, RemoteException;

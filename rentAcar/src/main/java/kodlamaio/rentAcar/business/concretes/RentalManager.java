@@ -31,9 +31,13 @@ import kodlamaio.rentAcar.entities.conretes.User;
 public class RentalManager implements RentalService {
 	@Autowired
 	private RentalRepository rentalRepository;
+	@Autowired
 	private CarRepository carRepository;
+	@Autowired
 	private ModelMapperService modelMapperService;
+	@Autowired
 	private FindexService findexService;
+	@Autowired
 	private UserRepository userRepository;
 
 	public RentalManager(RentalRepository rentalRepository, CarRepository carRepository,
@@ -55,7 +59,7 @@ public class RentalManager implements RentalService {
 		long totalDays = dayDifference(pickDate, returnDate);
 		rental.setTotalDays(totalDays);
 
-		Car car = carRepository.findById(createRentalRequest.getCarId());
+		Car car = carRepository.getById(createRentalRequest.getCarId());
 		car.setId(createRentalRequest.getCarId());
 		car.setState(3);
 		rental.setCar(car);
@@ -66,7 +70,7 @@ public class RentalManager implements RentalService {
 
 		rental.setTotalPrice(fullPrice(totalDays, totalPrice, pickCity, returnCity));
 
-		if (checkFindexScore(car.getMin_findex(), user.toString())) {
+		if (checkFindexScore(car.getMinFindex(), user.toString())) {
 			rentalRepository.save(rental);
 			return new SuccessResult("RENTAL.ADDED");
 		} else {

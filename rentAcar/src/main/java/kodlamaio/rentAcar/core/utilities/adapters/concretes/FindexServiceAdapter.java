@@ -3,8 +3,11 @@ package kodlamaio.rentAcar.core.utilities.adapters.concretes;
 import java.util.HashMap;
 import java.util.Random;
 
+import org.springframework.stereotype.Service;
+
 import kodlamaio.rentAcar.core.utilities.adapters.abstracts.FindexService;
 
+@Service
 public class FindexServiceAdapter implements FindexService {
 
 	Random random = new Random();

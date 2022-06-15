@@ -28,9 +28,10 @@ public class AdditionalServiceController {
 	@Autowired
 	private AdditionalService additionalService;
 
-	public AdditionalServiceController(AdditionalService additionalService) {
-		this.additionalService = additionalService;
-	}
+	/*
+	 * public AdditionalServiceController(AdditionalService additionalService) {
+	 * this.additionalService = additionalService; }
+	 */
 
 	@PostMapping("/add")
 	public Result add(@RequestBody @Valid CreateAdditionalServiceRequest createAdditionalRequest) {

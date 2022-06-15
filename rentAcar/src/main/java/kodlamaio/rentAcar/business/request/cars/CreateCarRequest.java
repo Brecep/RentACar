@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CreateCarRequest {
 	@NotBlank
-	@Size(min=2)
+	@Size(min = 2)
 	private String description;
 	@Min(1000)
 	@NotNull
@@ -23,6 +23,6 @@ public class CreateCarRequest {
 	private int km;
 	private int brandId;
 	private int colorId;
+	private int minFindex;
 
-	
 }

@@ -33,11 +33,11 @@ public class AdditionalItem {
 
 	@Column(name = "description")
 	private String description;
-	
+
 	@Column(name = "additional_Price")
 	private double additional_Price;
-	
-	@OneToMany(mappedBy = "additional_Item")
+
+	@OneToMany(mappedBy = "additionalItem")
 	private List<Additional> additionals;
-	
+
 }

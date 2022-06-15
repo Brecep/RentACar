@@ -46,7 +46,7 @@ public class Car {
 	private int state;
 
 	@Column(name = "min_findex")
-	private int min_findex;
+	private int minFindex;
 
 	@ManyToOne
 	@JoinColumn(name = "brand_id")

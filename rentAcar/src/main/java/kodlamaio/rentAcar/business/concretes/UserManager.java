@@ -27,8 +27,9 @@ import kodlamaio.rentAcar.entities.conretes.User;
 public class UserManager implements UserService {
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
 	private ModelMapperService modelMapperService;
-
+	@Autowired
 	private PersonCheckService personCheckService;
 
 	public UserManager(UserRepository userRespository, ModelMapperService modelMapperService) {
@@ -69,7 +70,7 @@ public class UserManager implements UserService {
 
 	@Override
 	public DataResult<GetUserResponse> getById(int id) {
-		User user = this.userRepository.findById(id);
+		User user = this.userRepository.getById(id);
 
 		GetUserResponse response = this.modelMapperService.forResponse().map(user, GetUserResponse.class);
 		return new SuccessDataResult<GetUserResponse>(response);

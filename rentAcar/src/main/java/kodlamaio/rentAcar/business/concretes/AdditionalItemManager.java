@@ -12,7 +12,6 @@ import kodlamaio.rentAcar.business.request.additionalItems.DeleteAdditionalItemR
 import kodlamaio.rentAcar.business.request.additionalItems.UpdateAdditionalItemRequest;
 import kodlamaio.rentAcar.business.response.additionalItems.GetAdditionalItemResponse;
 import kodlamaio.rentAcar.business.response.additionalItems.GetAllAdditionalItemsResponse;
-import kodlamaio.rentAcar.business.response.additionalservices.GetAdditionalServiceResponse;
 import kodlamaio.rentAcar.core.utilities.exceptions.BusinessException;
 import kodlamaio.rentAcar.core.utilities.mapping.ModelMapperService;
 import kodlamaio.rentAcar.core.utilities.result.DataResult;
