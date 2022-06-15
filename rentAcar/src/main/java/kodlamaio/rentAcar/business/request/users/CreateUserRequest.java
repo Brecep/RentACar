@@ -23,4 +23,5 @@ public class CreateUserRequest {
 	private String tcNo;
 	private String email;
 	private String password;
+	private int year;
 }
