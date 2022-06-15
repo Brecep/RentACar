@@ -40,4 +40,6 @@ public class User {
 
 	@Column(name = "year")
 	private int year;
+
+	
 }

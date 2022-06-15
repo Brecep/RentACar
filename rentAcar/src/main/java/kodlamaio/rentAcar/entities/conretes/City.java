@@ -19,16 +19,16 @@ import lombok.NoArgsConstructor;
 @Table(name = "cities")
 public class City {
 	@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	// @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "city_id")
 	private int cityId;
-	
+
 	@Column(name = "city_name")
 	private String cityName;
-	
+
 	@OneToMany(mappedBy = "pickCity")
 	private List<Rental> pickRentals;
-	
+
 	@OneToMany(mappedBy = "returnCity")
 	private List<Rental> returnRentals;
 }

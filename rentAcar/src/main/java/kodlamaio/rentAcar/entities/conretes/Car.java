@@ -22,43 +22,44 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","cars"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "cars" })
 @Table(name = "cars")
 public class Car {
 	@Id()
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name ="id")
+	@Column(name = "id")
 	private int id;
-	
+
 	@Column(name = "description")
 	private String description;
-	
+
 	@Column(name = "dailyPrice")
 	private double dailyPrice;
-	
+
 	@Column(name = "plate")
 	private String plate;
-	
+
 	@Column(name = "km")
 	private int km;
-	
+
 	@Column(name = "state")
 	private int state;
-	
+
+	@Column(name = "min_findex")
+	private int min_findex;
+
 	@ManyToOne
 	@JoinColumn(name = "brand_id")
 	private Brand brand;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "color_id")
 	private Color color;
-	
+
 	@OneToMany(mappedBy = "car")
 	List<Maintenance> maintenances;
-	
+
 	@OneToMany(mappedBy = "car")
 	List<Rental> rentals;
-	
 
-	
 }

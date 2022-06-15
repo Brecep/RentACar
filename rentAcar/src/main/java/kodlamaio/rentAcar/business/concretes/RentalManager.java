@@ -13,6 +13,7 @@ import kodlamaio.rentAcar.business.request.rentals.DeleteRentalRequest;
 import kodlamaio.rentAcar.business.request.rentals.UpdateRentalRequest;
 import kodlamaio.rentAcar.business.response.rentals.GetAllRentalsResponse;
 import kodlamaio.rentAcar.business.response.rentals.GetRentalResponse;
+import kodlamaio.rentAcar.core.utilities.adapters.abstracts.FindexService;
 import kodlamaio.rentAcar.core.utilities.exceptions.BusinessException;
 import kodlamaio.rentAcar.core.utilities.mapping.ModelMapperService;
 import kodlamaio.rentAcar.core.utilities.result.DataResult;
@@ -21,8 +22,10 @@ import kodlamaio.rentAcar.core.utilities.result.SuccessDataResult;
 import kodlamaio.rentAcar.core.utilities.result.SuccessResult;
 import kodlamaio.rentAcar.dataAccess.abstracts.CarRepository;
 import kodlamaio.rentAcar.dataAccess.abstracts.RentalRepository;
+import kodlamaio.rentAcar.dataAccess.abstracts.UserRepository;
 import kodlamaio.rentAcar.entities.conretes.Car;
 import kodlamaio.rentAcar.entities.conretes.Rental;
+import kodlamaio.rentAcar.entities.conretes.User;
 
 @Service
 public class RentalManager implements RentalService {
@@ -30,6 +33,8 @@ public class RentalManager implements RentalService {
 	private RentalRepository rentalRepository;
 	private CarRepository carRepository;
 	private ModelMapperService modelMapperService;
+	private FindexService findexService;
+	private UserRepository userRepository;
 
 	public RentalManager(RentalRepository rentalRepository, CarRepository carRepository,
 			ModelMapperService modelMapperService) {
@@ -41,6 +46,7 @@ public class RentalManager implements RentalService {
 	@Override
 	public Result add(CreateRentalRequest createRentalRequest) {
 		checkIfState(createRentalRequest.getCarId());
+		User user = this.userRepository.getById(createRentalRequest.getUserId());
 		Rental rental = this.modelMapperService.forRequest().map(createRentalRequest, Rental.class);
 
 		Date pickDate = createRentalRequest.getPickupDate();
@@ -59,10 +65,13 @@ public class RentalManager implements RentalService {
 		int returnCity = createRentalRequest.getReturnCityId();
 
 		rental.setTotalPrice(fullPrice(totalDays, totalPrice, pickCity, returnCity));
-		rentalRepository.save(rental);
 
-		return new SuccessResult("RENTAL.ADDED");
-
+		if (checkFindexScore(car.getMin_findex(), user.toString())) {
+			rentalRepository.save(rental);
+			return new SuccessResult("RENTAL.ADDED");
+		} else {
+			throw new BusinessException("NOT.ENOUGH.FİNDEX.SCORE");
+		}
 	}
 
 	@Override
@@ -156,6 +165,13 @@ public class RentalManager implements RentalService {
 		Rental rental = this.rentalRepository.findById(id);
 		GetRentalResponse response = this.modelMapperService.forResponse().map(rental, GetRentalResponse.class);
 		return new SuccessDataResult<GetRentalResponse>(response, "GET.BY.ID.RENTAL");
+	}
+
+	private boolean checkFindexScore(int findexScore, String tcNo) {
+		boolean state = false;
+		if (findexService.findexScore(tcNo) > findexScore)
+			state = true;
+		return state;
 	}
 
 }
