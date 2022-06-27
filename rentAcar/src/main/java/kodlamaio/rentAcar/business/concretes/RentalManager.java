@@ -59,6 +59,7 @@ public class RentalManager implements RentalService {
 		long totalDays = dayDifference(pickDate, returnDate);
 		rental.setTotalDays(totalDays);
 
+		@SuppressWarnings("deprecation")
 		Car car = carRepository.getById(createRentalRequest.getCarId());
 		car.setId(createRentalRequest.getCarId());
 		car.setState(3);

@@ -34,9 +34,10 @@ public class LoggingAspect {
 		}
 		System.out.println("after finally");
 	}
-	
-	
-	JSONArray jsonArray=new JSONArray();
+
+	JSONArray jsonArray = new JSONArray();
+
+	@SuppressWarnings("unchecked")
 	@Before("execution(* import kodlamaio.rentAcar.entities.conretes*.*)")
 	public void jsonWriter(JoinPoint joinPoint) {
 		MethodSignature signature = (MethodSignature) joinPoint.getSignature();
