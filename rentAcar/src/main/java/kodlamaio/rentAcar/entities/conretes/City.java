@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -26,9 +27,12 @@ public class City {
 	@Column(name = "city_name")
 	private String cityName;
 
-	@OneToMany(mappedBy = "pickCity")
+	@OneToMany(mappedBy = "pickCity") // bir şehirde birden fazla araba kiralanır
 	private List<Rental> pickRentals;
 
 	@OneToMany(mappedBy = "returnCity")
 	private List<Rental> returnRentals;
+
+	@OneToOne(mappedBy = "adresses")
+	private Adress adress;
 }

@@ -17,6 +17,35 @@
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
+	<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.13.3</version><!--$NO-MVN-MAN-VER$-->	
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-jcl</artifactId>
+			<version>2.17.2</version><!--$NO-MVN-MAN-VER$-->
+		</dependency>
+		<dependency>
+ 			<groupId>org.glassfish</groupId>
+ 			<artifactId>javax.json</artifactId>
+ 			<version>1.0-b04</version>
+		</dependency>
+    	
+    	<dependency>
+    		<groupId>com.googlecode.json-simple</groupId>
+    		<artifactId>json-simple</artifactId>
+    		<version>1.1.1</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
