@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.rentAcar.business.abstracts.RentalService;
@@ -21,24 +20,20 @@ import kodlamaio.rentAcar.core.utilities.result.Result;
 import kodlamaio.rentAcar.core.utilities.result.SuccessDataResult;
 import kodlamaio.rentAcar.core.utilities.result.SuccessResult;
 import kodlamaio.rentAcar.dataAccess.abstracts.CarRepository;
+import kodlamaio.rentAcar.dataAccess.abstracts.IndividualCustomerRepository;
 import kodlamaio.rentAcar.dataAccess.abstracts.RentalRepository;
-import kodlamaio.rentAcar.dataAccess.abstracts.UserRepository;
 import kodlamaio.rentAcar.entities.conretes.Car;
+import kodlamaio.rentAcar.entities.conretes.IndividualCustomer;
 import kodlamaio.rentAcar.entities.conretes.Rental;
-import kodlamaio.rentAcar.entities.conretes.User;
 
 @Service
 public class RentalManager implements RentalService {
-	@Autowired
+
 	private RentalRepository rentalRepository;
-	@Autowired
 	private CarRepository carRepository;
-	@Autowired
 	private ModelMapperService modelMapperService;
-	@Autowired
 	private FindexService findexService;
-	@Autowired
-	private UserRepository userRepository;
+	private IndividualCustomerRepository customerRepository;
 
 	public RentalManager(RentalRepository rentalRepository, CarRepository carRepository,
 			ModelMapperService modelMapperService) {
@@ -47,10 +42,12 @@ public class RentalManager implements RentalService {
 		this.modelMapperService = modelMapperService;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public Result add(CreateRentalRequest createRentalRequest) {
 		checkIfState(createRentalRequest.getCarId());
-		User user = this.userRepository.getById(createRentalRequest.getUserId());
+		// User user = this.userRepository.getById(createRentalRequest.getUserId());
+		IndividualCustomer user = this.customerRepository.getById(createRentalRequest.getUserId());
 		Rental rental = this.modelMapperService.forRequest().map(createRentalRequest, Rental.class);
 
 		Date pickDate = createRentalRequest.getPickupDate();
@@ -59,7 +56,6 @@ public class RentalManager implements RentalService {
 		long totalDays = dayDifference(pickDate, returnDate);
 		rental.setTotalDays(totalDays);
 
-		@SuppressWarnings("deprecation")
 		Car car = carRepository.getById(createRentalRequest.getCarId());
 		car.setId(createRentalRequest.getCarId());
 		car.setState(3);
@@ -153,7 +149,6 @@ public class RentalManager implements RentalService {
 			double fullprice = (day * price) + 750;
 			return fullprice;
 		}
-
 	}
 
 	@Override
